@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: sursa_snowflake
+    database: raw_snowflake
+    schema: PUBLIC 
+    tables:
+      - name: FREAKS_EMAIL_ADDRESSES
+      - name: GROSS_SALARIES
+      - name: VACATION_RESPONSES
