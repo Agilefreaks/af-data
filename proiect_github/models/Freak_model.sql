@@ -1,8 +1,8 @@
 with Freaks as (
-    select *
+    select "FREAK FULL NAME"
 
     from {{ source('sursa_snowflake', 'FREAKS_EMAIL_ADDRESSES') }}
 )
 
-select *
+select "FREAK FULL NAME"
 from Freaks
