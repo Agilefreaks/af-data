@@ -1,6 +1,6 @@
 SELECT 
     TO_CHAR(TO_DATE(DATA, 'DD/MM/YYYY'), 'MM/YYYY') AS LUNA,
     SUM("SALARIU BRUT") AS SALARIU_BRUT_TOTAL
-FROM Salaries_model
+FROM {{ source('sursa_modele', 'Salaries_model') }}
 GROUP BY TO_CHAR(TO_DATE(DATA, 'DD/MM/YYYY'), 'MM/YYYY')
 ORDER BY TO_DATE('01/' || TO_CHAR(TO_DATE(DATA, 'DD/MM/YYYY'), 'MM/YYYY'), 'DD/MM/YYYY')
