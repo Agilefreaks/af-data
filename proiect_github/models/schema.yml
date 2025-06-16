@@ -1,0 +1,62 @@
+version: 2
+
+models:
+  - name: Vacation_model
+    description: "Modelul acesta contine detalii despre tipul de concedii cat si despre datele de inceput si sfarsit de concediu."
+    columns:
+      - name: END_DATE
+        description: Contine data de final a concediului.
+        tests:
+          - not_null
+        
+      - name: TIMESTAMP
+        description: Contine data la care s-a declarat concediul.
+        tests:
+          - unique
+          - not_null
+        
+      - name: START_DATE
+        description: Contine data de incepere a concediului.
+        tests:
+          - not_null
+        
+      - name: BONUS_PAYMENT
+        description: Contine bonusul de concediu.
+        
+      - name: EMAIL_ADDRESS
+        description: Contine adresa de email.
+        tests:
+          - relationships:
+              to: ref('Freak_model')
+              field: EMAIL_ADDRESS
+        
+      - name: VACATION_CANCELLED
+        description: Contine date daca concediul este anulat sau nu.
+        
+      - name: VACATION_TYPE
+        description: Contine tipul de vacante luate de Freaks.
+        data_type: varchar
+        tests:
+          - accepted_values:
+              values: ['Vacation', 'Team Building', 'Paternal', 'Medical', 'Delegation', 'Conference']
+  - name: Salaries_model
+    description: Acest model contine date despre salariile si bonusurile pentru Freaks.
+    columns:
+      - name: DATA
+        description: Contine ziua de intai a fiecarei luni in care s-au virat bani.
+        tests:
+          - unique
+          - not_null
+      - name: NUME_FREAK
+        description: Contine numele Freaks-lor.
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('Freak_model')
+              field: FREAK_FULL_NAME
+      - name: SALARIU_BRUT
+        description: Contine salariul brut.
+      - name: BONUS_CONCEDIU
+        description: Contine suma bonus pentru concediu.
+    
